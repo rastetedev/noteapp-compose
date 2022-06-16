@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AddEditNoteScreen(
     navController: NavController,
-    noteColor: NoteColor?,
+    noteColor: String?,
     viewModel: AddEditNoteViewModel = hiltViewModel()
 ) {
     val titleState = viewModel.noteTitleState.value
@@ -41,7 +42,7 @@ fun AddEditNoteScreen(
     val noteBackgroundAnimatable = remember {
         Animatable(
             if (noteColor != null) {
-                NoteUtil.mapNoteColor(noteColor)
+                NoteUtil.mapNoteColor(NoteColor.valueOf(noteColor))
             } else {
                 NoteUtil.mapNoteColor(viewModel.noteColorState.value)
             }
@@ -73,7 +74,7 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Create, contentDescription = "Save note")
+                Icon(imageVector = Icons.Default.Star, contentDescription = "Save note")
             }
         },
         scaffoldState = scaffoldState
