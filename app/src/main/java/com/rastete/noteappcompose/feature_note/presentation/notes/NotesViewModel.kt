@@ -29,28 +29,28 @@ class NotesViewModel @Inject constructor(
 
     init {
         orderNotes(
-            NotesEvents.Order(NoteOrder.Date(OrderType.Descending))
+            NotesEvent.Order(NoteOrder.Date(OrderType.Descending))
         )
     }
 
-    fun onEvent(event: NotesEvents) {
+    fun onEvent(event: NotesEvent) {
         when (event) {
-            is NotesEvents.Order -> {
+            is NotesEvent.Order -> {
                 orderNotes(event)
             }
-            is NotesEvents.DeleteNote -> {
+            is NotesEvent.DeleteNote -> {
                 deleteNote(event)
             }
-            is NotesEvents.RestoreNote -> {
+            is NotesEvent.RestoreNote -> {
                 restoreNote()
             }
-            is NotesEvents.ToggleOrderSection -> {
+            is NotesEvent.ToggleOrderSection -> {
                 toggleOrderSection()
             }
         }
     }
 
-    private fun orderNotes(event: NotesEvents.Order) {
+    private fun orderNotes(event: NotesEvent.Order) {
         if (state.value.noteOrder::class == event.noteOrder::class &&
             state.value.noteOrder.orderType == event.noteOrder.orderType
         ) {
@@ -59,7 +59,7 @@ class NotesViewModel @Inject constructor(
         getNotes(event)
     }
 
-    private fun getNotes(event: NotesEvents.Order) {
+    private fun getNotes(event: NotesEvent.Order) {
         getNotesJob?.cancel()
         getNotesJob = noteUseCases.getNotes(event.noteOrder)
             .onEach { notes ->
@@ -84,7 +84,7 @@ class NotesViewModel @Inject constructor(
         }
     }
 
-    private fun deleteNote(event: NotesEvents.DeleteNote) {
+    private fun deleteNote(event: NotesEvent.DeleteNote) {
         viewModelScope.launch {
             noteUseCases.deleteNote(event.note)
             recentlyDeletedNote = event.note
