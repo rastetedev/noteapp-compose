@@ -18,10 +18,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
+import com.rastete.noteappcompose.core.util.TestTags.NOTE_ITEM
 import com.rastete.noteappcompose.feature_note.domain.model.Note
 import com.rastete.noteappcompose.feature_note.presentation.util.NoteUtil
 
@@ -33,7 +35,10 @@ fun NoteItem(
     cutCornerSize: Dp = 30.dp,
     onDeleteClick: () -> Unit
 ) {
-    Box(modifier = modifier) {
+    Box(
+        modifier = modifier
+            .testTag(NOTE_ITEM)
+    ) {
         Canvas(modifier = Modifier.matchParentSize()) {
             val clipPath = Path().apply {
                 lineTo(size.width - cutCornerSize.toPx(), 0f)

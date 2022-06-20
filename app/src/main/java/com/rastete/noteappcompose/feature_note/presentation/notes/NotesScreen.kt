@@ -13,9 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.rastete.noteappcompose.core.util.ContentDescriptionsTags.ADD_FLOATING_BUTTON
+import com.rastete.noteappcompose.core.util.ContentDescriptionsTags.SORT_ICON
+import com.rastete.noteappcompose.core.util.TestTags.ORDER_SECTION
 import com.rastete.noteappcompose.feature_note.presentation.notes.components.NoteItem
 import com.rastete.noteappcompose.feature_note.presentation.notes.components.OrderSection
 import com.rastete.noteappcompose.feature_note.presentation.util.Screen
@@ -40,7 +44,7 @@ fun NotesScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = ADD_FLOATING_BUTTON)
             }
         }
     ) {
@@ -60,7 +64,7 @@ fun NotesScreen(
                     style = MaterialTheme.typography.h4
                 )
                 IconButton(onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSection) }) {
-                    Icon(imageVector = Icons.Default.Settings, contentDescription = "Sort")
+                    Icon(imageVector = Icons.Default.Settings, contentDescription = SORT_ICON)
                 }
             }
 
@@ -72,7 +76,8 @@ fun NotesScreen(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = 16.dp)
+                        .testTag(ORDER_SECTION),
                     noteOrder = state.noteOrder,
                     onOrderChange = { noteOrder ->
                         viewModel.onEvent(NotesEvent.Order(noteOrder))

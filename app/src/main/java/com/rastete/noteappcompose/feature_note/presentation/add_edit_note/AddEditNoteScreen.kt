@@ -22,6 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.rastete.noteappcompose.core.util.ContentDescriptionsTags.SAVE_FLOATING_BUTTON
+import com.rastete.noteappcompose.core.util.TestTags.CONTENT_NOTE_TEXT_FIELD
+import com.rastete.noteappcompose.core.util.TestTags.TITLE_NOTE_TEXT_FIELD
 import com.rastete.noteappcompose.feature_note.domain.model.NoteColor
 import com.rastete.noteappcompose.feature_note.presentation.add_edit_note.components.TransparentHintTextField
 import com.rastete.noteappcompose.feature_note.presentation.util.NoteUtil
@@ -74,7 +77,7 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Star, contentDescription = "Save note")
+                Icon(imageVector = Icons.Default.Star, contentDescription = SAVE_FLOATING_BUTTON)
             }
         },
         scaffoldState = scaffoldState
@@ -133,7 +136,8 @@ fun AddEditNoteScreen(
                 },
                 singleLine = true,
                 isHintVisible = titleState.isHintVisible,
-                textStyle = MaterialTheme.typography.h5
+                textStyle = MaterialTheme.typography.h5,
+                testTag = TITLE_NOTE_TEXT_FIELD
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
@@ -147,7 +151,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                testTag = CONTENT_NOTE_TEXT_FIELD
             )
         }
     }

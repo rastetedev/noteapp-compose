@@ -15,7 +15,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.rastete.noteappcompose.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -96,7 +97,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test:core-ktx:1.4.0'
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.9.1"
-    androidTestImplementation "io.mockk:mockk-android:1.10.5"
+    //androidTestImplementation "io.mockk:mockk-android:1.10.5"
     androidTestImplementation 'androidx.test:runner:1.4.0'
 
 

@@ -106,7 +106,7 @@ class AddEditNoteViewModel @Inject constructor(
                         content = noteContentState.value.text,
                         timestamp = System.currentTimeMillis(),
                         color = noteColorState.value,
-                        id = currentNoteId ?: 0
+                        id = currentNoteId
                     )
                 )
                 _addEditNoteEffect.emit(AddEditNoteEffect.SaveNote)
